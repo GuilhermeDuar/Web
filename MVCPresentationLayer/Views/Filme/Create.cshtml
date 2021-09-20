@@ -1,0 +1,55 @@
+﻿@model MVCPresentationLayer.Models.Filme.FilmeInsertViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>FilmeInsertViewModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Nome" class="control-label"></label>
+                <input asp-for="Nome" class="form-control" />
+                <span asp-validation-for="Nome" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Duracao" class="control-label"></label>
+                <input asp-for="Duracao" class="form-control" />
+                <span asp-validation-for="Duracao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AnoLancamento" class="control-label"></label>
+                <input asp-for="AnoLancamento" class="form-control" />
+                <span asp-validation-for="AnoLancamento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GeneroID" class="control-label"></label>
+               
+                <select name="GeneroID" id="GeneroID" class="form-control">
+                    @foreach (var item in ViewBag.Generos)
+                    {
+                        <option value="@item.ID">@item.Nome</option>
+                    }
+                </select>
+
+
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
